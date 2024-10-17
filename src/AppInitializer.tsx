@@ -5,6 +5,7 @@ import { WEB_HTTP_CONTEXT } from '@am92/web-http'
 import Loader from './Components/Loader'
 
 import AppRouter from './AppRouter'
+import DynatraceWrapper from './Lib/Dynatrace/DynatraceWrapper'
 
 import {
   getAccessTokenSelector,
@@ -28,6 +29,7 @@ class AppInitializer extends Component<
   state = DEFAULT_STATE
 
   async componentDidMount() {
+    this.initializeDynatrace()
     this.setTokensIfExist()
     await this.initialize()
   }
@@ -52,6 +54,12 @@ class AppInitializer extends Component<
     if (refreshToken) {
       asHttp.context.set(WEB_HTTP_CONTEXT.REFRESH_TOKEN, refreshToken)
     }
+  }
+
+  initializeDynatrace = () => {
+    const app_version = localStorage.getItem('app_version') || ''
+    //INFO: Id has to be replaced with the ID of custom property created in a particular application. Every application will have a different Id.
+    DynatraceWrapper.logCustomProperty('Id', app_version)
   }
 
   render() {

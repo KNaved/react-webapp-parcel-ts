@@ -22,6 +22,14 @@
       <% }); %>
     <% } %>
 
+     <% if (locals.DYNATRACE_SCRIPT) { %>
+      <script type="text/javascript" src="<%= locals.DYNATRACE_SCRIPT %>" crossorigin="anonymous"></script>
+      <% APP_VERSION = locals.version %>
+      <script>
+        localStorage.setItem("app_version", "<%= APP_VERSION %>")
+      </script>
+    <% } %>
+
     <title><%= locals.APP_TITLE %></title>
     <meta name="description" content="<%= locals.APP_DESCRIPTION %>">
 

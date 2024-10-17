@@ -1,6 +1,8 @@
 import { PayloadActionCreator } from '@reduxjs/toolkit'
 import { WebHttpError } from '@am92/web-http'
 
+import DynatraceWrapper from '../Lib/Dynatrace/DynatraceWrapper'
+
 import { TAppDispatch } from '../Configurations/AppStore'
 
 export type TraceActions<TResponse> = {
@@ -37,7 +39,8 @@ export default function serviceActionCreator<
         if (traceActions.error && typeof traceActions.error === 'function') {
           dispatch(traceActions.error(error as WebHttpError))
         }
-
+        // INFO: For API failure log data in Dynatrace
+        DynatraceWrapper.error(error as Error)
         return error as WebHttpError
       }
     }

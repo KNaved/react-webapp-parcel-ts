@@ -6,3 +6,4 @@ export const AS_API_KEY = process.env.AS_API_KEY || ''
 export const AS_ENABLE_CRPTOGRAPHY =
   process.env.AS_ENABLE_CRPTOGRAPHY === 'true'
 export const AS_API_TIMEOUT = parseInt(process.env.AS_API_TIMEOUT || '', 10)
+export const DYNATRACE_SCRIPT = process.env.DYNATRACE_SCRIPT
