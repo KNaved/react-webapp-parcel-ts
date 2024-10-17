@@ -17,6 +17,7 @@ import { getThemeReducer } from '~/src/Redux/Theme/Selectors'
 import { TAppDispatch, TAppStore } from '~/src/Configurations/AppStore'
 
 import HOME_IMAGE from '~/src/Assets/HOME_IMAGE'
+import DynatraceWrapper from '~/src/Lib/Dynatrace/DynatraceWrapper'
 
 interface IHomePageProps extends TPropsFromRedux, IWithRouterProps {}
 
@@ -25,6 +26,7 @@ class HomePage extends React.Component<IHomePageProps> {
     const { actions } = this.props
     const newScheme = value ? 'dark' : 'light'
     actions.setThemeScheme(newScheme)
+    DynatraceWrapper.info(`Theme Changed to: ${newScheme}`)
   }
 
   public render() {

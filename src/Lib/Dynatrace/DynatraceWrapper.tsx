@@ -23,7 +23,10 @@ const DynatraceWrapper = {
    * @param logInfoMessage: Info message which needs to be logged
    */
   info: (logInfoMessage: string) => {
-    window.dtrum && window.dtrum.actionName(logInfoMessage)
+    if (window.dtrum) {
+      const actionId = window.dtrum.enterAction(logInfoMessage)
+      window.dtrum.leaveAction(actionId)
+    }
   },
 
   /**

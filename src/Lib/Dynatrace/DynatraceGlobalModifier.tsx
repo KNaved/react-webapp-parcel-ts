@@ -6,7 +6,8 @@ declare global {
     dtrum: {
       identifyUser: (id: string) => void
       endSession: () => void
-      actionName: (infoLogMessage: string) => void
+      enterAction: (infoLogMessage: string) => number
+      leaveAction: (actionId: number) => void
       reportError: (errorLogMessage: Error | string) => void
       addActionProperties: (
         customPropertyId: string,
