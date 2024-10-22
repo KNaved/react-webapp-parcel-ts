@@ -43,9 +43,11 @@ const DynatraceWrapper = {
    * Link: https://docs.dynatrace.com/docs/platform-modules/digital-experience/web-applications/additional-configuration/define-user-action-and-session-properties
    * @param shortString: This will have the value for the custom property defined in Dynatrace
    */
-  logCustomProperty: (customPropertyId: string, shortString: string) => {
-    window.dtrum &&
-      window.dtrum.addActionProperties(customPropertyId, shortString)
+  logCustomProperty: (key: string, val: string) => {
+    if (window.dtrum) {
+      const stringPropertyMap = { [key]: { value: val, public: true } }
+      window.dtrum.sendSessionProperties(null, null, stringPropertyMap)
+    }
   }
 }
 

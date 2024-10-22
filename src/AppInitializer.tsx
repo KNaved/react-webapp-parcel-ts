@@ -57,9 +57,7 @@ class AppInitializer extends Component<
   }
 
   initializeDynatrace = () => {
-    const app_version = localStorage.getItem('app_version') || ''
-    //INFO: Id has to be replaced with the ID of custom property created in a particular application. Every application will have a different Id.
-    DynatraceWrapper.logCustomProperty('Id', app_version)
+    DynatraceWrapper.info('Application Initialized')
   }
 
   render() {
