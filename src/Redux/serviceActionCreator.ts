@@ -1,7 +1,7 @@
 import { PayloadActionCreator } from '@reduxjs/toolkit'
 import { WebHttpError } from '@am92/web-http'
 
-import DynatraceWrapper from '../Lib/Dynatrace/DynatraceWrapper'
+import DynatraceWrapper from '../Lib/Dynatrace/Dynatrace.Wrapper'
 
 import { TAppDispatch } from '../Configurations/AppStore'
 

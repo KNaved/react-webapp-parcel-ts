@@ -5,7 +5,7 @@ import { WEB_HTTP_CONTEXT } from '@am92/web-http'
 import Loader from './Components/Loader'
 
 import AppRouter from './AppRouter'
-import DynatraceWrapper from './Lib/Dynatrace/DynatraceWrapper'
+import DynatraceWrapper from './Lib/Dynatrace/Dynatrace.Wrapper'
 
 import {
   getAccessTokenSelector,
@@ -29,7 +29,7 @@ class AppInitializer extends Component<
   state = DEFAULT_STATE
 
   async componentDidMount() {
-    this.initializeDynatrace()
+    window.dtrum && this.initializeDynatrace()
     this.setTokensIfExist()
     await this.initialize()
   }
@@ -57,7 +57,12 @@ class AppInitializer extends Component<
   }
 
   initializeDynatrace = () => {
-    DynatraceWrapper.info('Application Initialized')
+    // Set Session in Dynatrace. This can be userId or applicationId
+    DynatraceWrapper.setSession('<session name>')
+    // Logs info message in Dynatrace
+    DynatraceWrapper.log('Application Initialized')
+    // Logs session property which ideally doesn't change during users journey
+    DynatraceWrapper.logSessionProperty('appversion', '1.0.0')
   }
 
   render() {
